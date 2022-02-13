@@ -15,7 +15,7 @@
 </div>
 <div class="row">
 
-  <%= attachment_image_tag @item, :image, :fill, 60, 60 %>
+  <%= attachment_image_tag @item, :image, :fill, 300, 300 %>
   <div class="form-group">
 　　<label for=" ">
    商品名：<%= @item.name %>
@@ -27,8 +27,8 @@
  </label>
 
   <div class="form-group">
-　　<label for=" ">
-  税抜価格：<%= @item.price %> 円
+　　<label for=" ">　
+  税抜価格：<%= @item.price. to_s(:delimited) %> 円
  </label>
 
  <div class="form-group">

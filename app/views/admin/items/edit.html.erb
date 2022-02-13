@@ -1,5 +1,5 @@
-<h1>商品新規登録</h1>
-<%= form_with model:@item,url: admin_items_path, local:true do |f| %>
+<h1>商品編集</h1>
+<%= form_with model:@item,url: admin_item_path(@item), local:true do |f| %>
 
   <h4>商品画像</h4>
   <%= f.attachment_field :image %>
@@ -9,5 +9,5 @@
   <%= f.text_area :introduction %>
   <h4>税抜価格</h4>
   <%= f.number_field :price %>
-  <%= f.submit '新規登録' %>
+  <%= f.submit '変更を保存' ,class: 'btn btn-success'  %>
 <% end %>
