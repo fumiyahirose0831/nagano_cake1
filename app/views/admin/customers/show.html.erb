@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NaganoCake</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+ <body>
+<div class = "container">
+ <h2>会員詳細</h2>
+</div>
+<div class="row">
+
+　　<label for=" ">
+     会員ID：<%= @customer.id %>
+    </label>
+　　<label for=" ">
+     氏名：<%= @customer.last_name %>
+    </label>
+　　<label for=" ">
+     フリガナ：<%= @customer.last_name_kana %>
+   </label>
+　　<label for=" ">
+     郵便番号：<%= @customer.postal_code %>
+    </label>
+　　<label for=" ">
+     住所：<%= @customer.address %>
+   </label>
+　　<label for=" ">
+     電話番号：<%= @customer.telephone_number %>
+   </label>
+　　<label for=" ">
+     メールアドレス：<%= @customer.email %>
+   </label>
+　　<label for=" ">
+     <p>会員ステータス：
+     <% if @customer.is_deleted == false %>有効
+     <% else %>無効
+     <% end %></p>
+   </label>
+   
+ <label for=" ">
+  <%= link_to "編集する", edit_admin_customer_path(@customer) ,class: 'btn btn-success'%>
+   </label>
+  <label for=" ">
+  <%= link_to "注文履歴一覧を見る", edit_admin_customer_path(@customer) ,class: 'btn btn-primary'%>
+   </label>
+</div>

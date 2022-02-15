@@ -1,0 +1,28 @@
+<h1>●●さんの会員情報編集</h1>
+<%= form_with model:@customer,url: admin_customer_path(@customer), local:true do |f| %>
+
+  <div class="form-group">
+　　<label for=" ">
+     <h4>会員ID：<%= @customer.id %></h4>
+    </label>
+
+  <h4>氏名</h4>
+  <%= f.text_field :last_name %>
+  <%= f.text_field :first_name %>
+  <h4>フリガナ</h4>
+  <%= f.text_field :last_name_kana %>
+  <%= f.text_field :first_name_kana %>
+  <h4>郵便番号</h4>
+  <%= f.text_field :postal_code %>
+  <h4>住所</h4>
+  <%= f.text_field :address %>
+  <h4>電話番号</h4>
+  <%= f.text_field :telephone_number %>
+  <h4>メールアドレス</h4>
+  <%= f.text_field :email %>
+  <h4>会員ステータス</h4>
+　<label><%= f.radio_button :is_deleted, :false %>有効</label>
+　<label><%= f.radio_button :is_deleted, :true %>無効</label>
+
+  <%= f.submit '変更を保存' ,class: 'btn btn-success'  %>
+<% end %>
