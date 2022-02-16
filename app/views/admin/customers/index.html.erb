@@ -18,7 +18,8 @@
    <%= customer.id %>
   </td>
   <td>
-   <%= customer.last_name %>
+   <%= link_to customer.last_name + customer.first_name, "/admin/customers/#{customer.id}" %>
+
   </td>
   <td>
    <%= customer.email  %>
@@ -31,7 +32,7 @@
    <% end %>
 
   </td>
-
+</tr>
  </div>
  <% end %>
 

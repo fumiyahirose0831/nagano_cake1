@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<div class="col-md-8 offset-md-1">
+ <h2>注文履歴一覧</h2>
+  <table class="table table-hover table-inverse">
+   <thead>
+    <tr>
+      <th>購入日時</th>
+      <th>購入者</th>
+      <th>注文個数</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+<tbody>
+<% @orders.each do |order| %>
+<tr>
+  <td>
+   <%= link_to order.creatrd_at, "/admin/orders/#{order.id}" %>
+  </td>
+  <td>
+   <%= order.customer_id %><%#=cousyomerのnameを追加%>
+
+  </td>
+  <td>
+   <%= order.id %><%#=order_deatilsのamountを追加%>
+  </td>
+ </div>
+ <% end %>
+
+</tbody>
+
+ </table>
+</div>
+</main>
