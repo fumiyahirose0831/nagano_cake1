@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<div class="col-md-8 offset-md-1">
 <h1>商品新規登録</h1>
 <%= form_with model:@item,url: admin_items_path, local:true do |f| %>
 
@@ -11,3 +13,4 @@
   <%= f.number_field :price %>
   <%= f.submit '新規登録' %>
 <% end %>
+</div>

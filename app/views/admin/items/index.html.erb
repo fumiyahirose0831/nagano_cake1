@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <div class="col-md-8 offset-md-1">
  <h2>商品一覧</h2>
+ <a href="new_admin_item_path" class="btn-circle-border-simple">＋</a>
+   <i class="fa-solid fa-circle-plus"></i>
+
+   <%= link_to  new_admin_item_path, class: "btn btn-dark" do %>
+   <i class="fa-solid fa-circle-plus"></i>
+   <% end %>
   <table class="table table-hover table-inverse">
    <thead>
     <tr>

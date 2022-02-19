@@ -1,1 +1,49 @@
 <h1>注文履歴詳細</h1>
+
+  <div class="form-group">
+ 　<label for=" ">
+   購入者：<%= @order.customer_id %> <%# 購入者追加%>
+   </label>
+
+  <div class="form-group">
+ 　<label for=" ">
+   購入日：<%= @order.created_at %>
+   </label>
+
+  <div class="form-group">
+　 <label for=" ">
+   配送先：<%= @order.postal_code %> + <%= @order.address %>
+   </label>
+
+  <div class="form-group">
+  <label for=" ">
+  支払方法：<%= @order.payment_method %> 円
+   </label>
+  </div>
+
+  <table class="table table-hover table-inverse">
+   <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価（税込）</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+<tbody>
+<%# @items.each do |item| %>
+<tr>
+  <td>
+   <%#= item.id %>
+  </td>
+  <td>
+   <%#= link_to item.name, "/admin/items/#{item.id}" %>
+  </td>
+  <td>
+   <%#= item.price. to_s(:delimited) %>
+  </td>
+ </div>
+ <% end %>
+
+</tbody>

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   }
 
   root to: 'homes#top'
+  get  "about"  => "homes#about"
 
   scope module: :public do
     resources :oders
@@ -24,5 +25,6 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:show]
     root to: 'homes#top'
+
   end
  end

@@ -1,4 +1,7 @@
-<h1>商品編集</h1>
+<!DOCTYPE html>
+<div class="col-md-8 offset-md-1">
+
+<h2>商品編集</h2>
 <%= form_with model:@item,url: admin_item_path(@item), local:true do |f| %>
 
   <h4>商品画像</h4>
@@ -11,3 +14,4 @@
   <%= f.number_field :price %>
   <%= f.submit '変更を保存' ,class: 'btn btn-success'  %>
 <% end %>
+</div>
