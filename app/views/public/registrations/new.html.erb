@@ -1,29 +1,90 @@
-<h2>Sign up</h2>
+ <h2>新規会員登録</h2>
+<div class="row">
+　<div class ="col-1">
+  </div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+ <table class="table table-hover table-inverse">
+<tbody>
+   <tr>
+     <td>名前</td>
+     <td>
+       <%= f.label :（姓）　 %> <%= f.text_field :last_name, autofocus: true %>
+       <%= f.label :（名）　 %> <%= f.text_field :first_name, autofocus: true %>
+    </td>
+   </tr>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <tr>
+  　 <td>フリガナ</td>
+    <td>
+    <%= f.label :（セイ） %> <%= f.text_field :last_name_kana, autofocus: true %>
+    <%= f.label :（メイ） %> <%= f.text_field :first_name_kana, autofocus: true %>
+   </td>
+  </tr>
 
-  <div class="field">
-    <%= f.label :password %>
+   <tr>
+  　 <td>メールアドレス</td>
+    <td>
+    <%= f.label :　　　　 %> <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </td>
+ 　 </tr>
+
+   <tr>
+  　 <td>郵便番号（ハイフンなし）</td>
+    <td>
+    <%= f.label :　　　　 %> <%= f.text_field :postal_code, autofocus: true %>
+    </td>
+ 　 </tr>
+
+   <tr>
+  　 <td>住所</td>
+    <td>
+    <%= f.label :　　　　 %> <%= f.text_field :address, autofocus: true, size: 50 %>
+    </td>
+ 　 </tr>
+
+
+   <tr>
+  　 <td>電話番号（ハイフンなし）</td>
+    <td>
+    <%= f.label :　　　　 %> <%= f.text_field :telephone_number, autofocus: true %>
+    </td>
+ 　 </tr>
+
+   <tr>
+  　 <td>パスワード (6 文字以上）</td>
+    <td>
+    <%= f.label :　　　　 %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    <% end %>
     <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    </td>
+ 　 </tr>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
+   <tr>
+  　 <td>パスワード（確認用）</td>
+    <td>
+    <%= f.label :　　　　 %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    </td>
+ 　 </tr>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+　　<tr>
+　　  <td>
+　　  </td>
+　　 <td>
+    <%= f.submit "新規登録" , class:"btn btn-success btn-lg" %>
+     </td>
+   </tr>
+
 <% end %>
 
-<%= render "devise/shared/links" %>
+ </table>
+
+
+</div>
+<h5>既に登録ずみの方</h5>
+<div class = "sign_in">
+<%= link_to 'こちら', new_admin_session_path %> からログインしてください。
+</div>

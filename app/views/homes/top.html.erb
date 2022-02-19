@@ -12,7 +12,10 @@
   </div>
 </div>
 
+ <div class="title">
   <h2>新着商品</h2>
+ </div>
+
   <div class="card-group">
   <% @items.each do |item| %>
 
@@ -30,5 +33,7 @@
   <% end %>
 
   </div>
-  <h2>test</h2>
+  <div class = "items">
+  <%= link_to '全ての商品を見る', items_path %>
+　</div>
 </div>
