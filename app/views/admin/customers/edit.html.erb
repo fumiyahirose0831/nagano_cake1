@@ -1,30 +1,54 @@
-
+<div class = "container">
 <%= form_with model:@customer,url: admin_customer_path(@customer), local:true do |f| %>
 
-<h1><%= @customer.last_name + @customer.first_name %>さんの会員詳細</h1>
+<h3><%= @customer.last_name %> <%= @customer.first_name %>さんの会員情報編集</h3>
 
-  <div class="form-group">
-　　<label for=" ">
+<div class="row">
+  <table class="table table-hover table-borderless">
 
-    </label>
-  <h4>会員ID <%= @customer.id %></h4>
-  <h4>氏名</h4>
-  <%= f.text_field :last_name %>
-  <%= f.text_field :first_name %>
-  <h4>フリガナ</h4>
-  <%= f.text_field :last_name_kana %>
-  <%= f.text_field :first_name_kana %>
-  <h4>郵便番号</h4>
-  <%= f.text_field :postal_code %>
-  <h4>住所</h4>
-  <%= f.text_field :address %>
-  <h4>電話番号</h4>
-  <%= f.text_field :telephone_number %>
-  <h4>メールアドレス</h4>
-  <%= f.text_field :email %>
-  <h4>会員ステータス</h4>
-　<label><%= f.radio_button :is_deleted, :false %>有効</label>
-　<label><%= f.radio_button :is_deleted, :true %>無効</label>
+  <tr>
+    <td>会員ID</td>
+    <td>
+       <%= @customer.id %>
+    </td>
+  </tr>
 
+  <tr>
+    <td>氏名</td>
+    <td> <%= f.text_field :last_name %>  <%= f.text_field :first_name %></td>
+  </tr>
+
+   <tr>
+    <td>フリガナ</td>
+    <td><%= f.text_field :last_name_kana %>  <%= f.text_field :first_name_kana %></td>
+   </tr>
+
+   <tr>
+    <td>郵便番号</td>
+    <td><%= f.text_field :postal_code %></td>
+   </tr>
+
+  <tr>
+    <td>住所</td>
+    <td><%= f.text_field :address %></td>
+  </tr>
+
+  <tr>
+    <td>電話番ナ</td>
+    <td><%= f.text_field :telephone_number %></td>
+  </tr>
+
+  <tr>
+    <td>メールアドレス</td>
+    <td> <%= f.text_field :email %></td>
+  </tr>
+
+  <tr>
+    <td>会員ステータス</td>
+    <td><%= f.radio_button :is_deleted, :false %>有効　<%= f.radio_button :is_deleted, :true %>退会</td>
+</table>
   <%= f.submit '変更を保存' ,class: 'btn btn-success'  %>
 <% end %>
+
+
+</div>

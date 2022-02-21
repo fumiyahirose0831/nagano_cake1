@@ -1,52 +1,68 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>NaganoCake</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
- <body>
+<div class="col-md-8 offset-md-1">
 <div class = "container">
- <h2>会員詳細</h2>
-</div>
-<div class="row">
 
-　　<label for=" ">
-     会員ID：<%= @customer.id %>
-    </label>
-　　<label for=" ">
-     氏名：<%= @customer.last_name %>
-    </label>
-　　<label for=" ">
-     フリガナ：<%= @customer.last_name_kana %>
-   </label>
-　　<label for=" ">
-     郵便番号：<%= @customer.postal_code %>
-    </label>
-　　<label for=" ">
-     住所：<%= @customer.address %>
-   </label>
-　　<label for=" ">
-     電話番号：<%= @customer.telephone_number %>
-   </label>
-　　<label for=" ">
-     メールアドレス：<%= @customer.email %>
-   </label>
-　　<label for=" ">
-     <p>会員ステータス：
+<h3>会員詳細</h3>
+
+<div class="row">
+  <table class="table table-hover table-borderless">
+ <tr>
+    <td>会員ID</td>
+    <td>
+     <%= @customer.id %>
+    </td>
+  </tr>
+  <tr>
+    <td>氏名</td>
+    <td>
+     <%= @customer.last_name %> <%= @customer.first_name %>
+    </td>
+  </tr>
+ <tr>
+    <td>フリガナ</td>
+    <td>
+     <%= @customer.last_name_kana %> <%= @customer.first_name_kana %>
+    </td>
+  </tr>
+ <tr>
+    <td>郵便番号</td>
+    <td>
+     <%= @customer.postal_code %>
+    </td>
+  </tr>
+ <tr>
+    <td>住所</td>
+    <td>
+     <%= @customer.address %>
+    </td>
+  </tr>
+ <tr>
+    <td>電話番号</td>
+    <td>
+     <%= @customer.telephone_number %>
+    </td>
+  </tr>
+ <tr>
+    <td>メールアドレス</td>
+    <td>
+     <%= @customer.email %>
+    </td>
+  </tr>
+ <tr>
+    <td>会員ステータス</td>
+    <td>
      <% if @customer.is_deleted == false %>有効
      <% else %>無効
-     <% end %></p>
-   </label>
-   
- <label for=" ">
+     <% end %>
+    </td>
+  </tr>
+  </table>
+</div>
+
+
   <%= link_to "編集する", edit_admin_customer_path(@customer) ,class: 'btn btn-success'%>
-   </label>
-  <label for=" ">
   <%= link_to "注文履歴一覧を見る", edit_admin_customer_path(@customer) ,class: 'btn btn-primary'%>
-   </label>
+
+
+</div>
 </div>
