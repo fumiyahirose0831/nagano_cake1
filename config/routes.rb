@@ -17,6 +17,11 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :oders
+    get 'customers/my_page' => 'customers#show'
+    get 'customers/edit' => 'customers#edit'
+    patch 'customers' => 'customers#update'
+    get 'customers/unsubscrube' => 'customers#unsubscrube'
+    patch 'customers/withdraw' => 'customers#withdraw'
   end
 
   namespace :admin do
