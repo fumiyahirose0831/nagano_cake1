@@ -8,18 +8,19 @@ class Public::CustomersController < ApplicationController
    end
 
    def update
+    @customer = current_customer
    end
 
    def unsubscribes
     @customer = current_customer
    end
 
-   def withdraw
+   def withdrawal
     @customer = current_customer
     @customer.update(is_deleted: true)
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
-    redirect_to customers_my_page_path
+    redirect_to root_path
    end
 
 

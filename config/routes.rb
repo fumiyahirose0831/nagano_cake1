@@ -17,9 +17,9 @@ Rails.application.routes.draw do
     get 'customers/edit' => 'customers#edit'
     patch 'customers' => 'customers#update'
     get 'customers/unsubscribes' => 'customers#unsubscribes'
-    patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
+    patch '/customers/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
   end
-  
+
    devise_for :customers, controllers: {
     sessions:      'public/sessions',
     passwords:     'public/passwords',
