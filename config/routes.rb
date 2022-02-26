@@ -18,6 +18,10 @@ Rails.application.routes.draw do
     patch 'customers' => 'customers#update'
     get 'customers/unsubscribes' => 'customers#unsubscribes'
     patch '/customers/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
+    resources :addresses
+    resources :items, only: [:index, :show]
+    resources :cart_items, only: [:index, :update, :destroy, :create]
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
   end
 
    devise_for :customers, controllers: {

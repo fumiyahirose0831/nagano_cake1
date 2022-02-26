@@ -5,5 +5,8 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
   def active_for_authentication?
     super && (is_deleted == false)
+
+    #has_many :cart_items, dependent: :destroy
+    #has_many :orders, dependent: :destroy
   end
 end
