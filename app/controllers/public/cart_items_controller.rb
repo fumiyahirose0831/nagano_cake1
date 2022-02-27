@@ -24,7 +24,7 @@ def destroy
 end
 
 def destroy_all
-  current_user.cart_items.destroy_all
+  current_customer.cart_items.destroy_all
   redirect_to items_path
 end
 
