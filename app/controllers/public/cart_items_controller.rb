@@ -8,12 +8,7 @@ def create
    @item = current_customer.cart_items.find_by(item_id: @cart_item.item_id)
     if @item
       @item.update(amount: @item.amount + @cart_item.amount)
-    # 存在した場合
-    # 2. カート内の個数をフォームから送られた個数分追加す
 
-
-    # 存在しなかった場合
-        # カートモデルにレコードを新規作成する
   else
     @cart_item.save
   end
@@ -22,10 +17,13 @@ end
 
 def index
   @cart_items = current_customer.cart_items.all
+  @customer = current_customer
 end
 
 def update
-
+   @cart_item = CartItem.find(params[:id])
+   @cart_item.update(cart_item_params)
+   redirect_to request.referer
 
 end
 
@@ -45,7 +43,7 @@ end
 
 private
 def cart_item_params
-    params.require(:cart_item).permit(:customer_id, :item_id, :amount)
+    params.require(:cart_item).permit(:customer_id, :item_id, :amount, :cart_item)
 end
 
 end
