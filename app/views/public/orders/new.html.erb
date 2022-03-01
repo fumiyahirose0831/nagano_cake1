@@ -10,6 +10,8 @@
 
 
   <h5>支払方法</h5>
+  
+  
   <%= form_with model:@order,url: orders_path, local:true do |f| %>
   <%= f.hidden_field :customer_id, :value => @customer.id %>
 
@@ -20,21 +22,30 @@
  
 
    <h5>お届け先</h5>
-  <%= form_with model:@order,url: orders_path, local:true do |f| %>
-   <%= f.radio_button :select_method, "ご自身の住所" %>
-   <%= f.label :select_method, "ご自身の住所" %>
-　　<p>〒<%= @customer.postal_code %> <%= @customer.address %>  <%= @customer.last_name %><%= @customer.first_name %></p>
-   <%= f.radio_button :select_method, "新しいお届け先" %>
-   <%= f.label :select_method, "新しいお届け先" %>
-   <% end %>
+ 
+<%= form_with model: @order, url: orders_comfirm_path, local: true do |f| %>
 
 
- 　<%= f.hidden_field :customer_id, :value => @customer.id %>
-  <p>郵便番号(ハイフンなし)<%= f.text_field :postal_code %></p>
-  <p>住所<%= f.text_field :address,  size: 40%></p>
-  <p>宛名<%= f.text_field :name %></p>
-  <% end %>
+  <%= f.radio_button :address_number, 1 %> 
+  <%= f.label :address_number_1, "ご自身の住所" %>
+　<p>〒<%= @customer.postal_code %> <%= @customer.address %>  <%= @customer.last_name %><%= @customer.first_name %></p>
+   
+  <%= f.radio_button :address_number, 2 %>
+  <%= f.label :address_number_2, "新しいお届け先" %>
+  
+   <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+   <%= f.text_field :postal_code %>
+   
+   <%= f.label :address, "住所" %>
+   <%= f.text_field :address,  size: 40 %>
+   
+   <%= f.label :name, "宛名" %>
+   <%= f.text_field :name %>
 
+  <%= f.submit "確認画面へ進む" %>
+<% end %>
+   
+   
     </tbody>
 
 
