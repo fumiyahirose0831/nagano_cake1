@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get  "about"  => "homes#about"
 
   scope module: :public do
-    resources :orders
+
     get 'customers/my_page' => 'customers#show'
     get 'customers/edit' => 'customers#edit'
     patch 'customers' => 'customers#update'
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :cart_items, only: [:index, :update, :destroy, :create]
     post 'orders/comfirm' => 'orders#comfirm'
-
+    resources :orders
   end
 
    devise_for :customers, controllers: {

@@ -1,31 +1,58 @@
 class Public::OrdersController < ApplicationController
   def new
     @order = Order.new
+    @customer = current_customer
   end
 
  def create
- end
-
-
+  cart_items = current_customer.cart_items.all
+# ログインユーザーのカートアイテムをすべて取り出して cart_items に入れます
+  @order = current_customer.orders.new(order_params)
+# 渡ってきた値を @order に入れます
+  if @order.save
+# ここに至るまでの間にチェックは済ませていますが、念の為IF文で分岐させています
+    cart_items.each do |cart|
+# 取り出したカートアイテムの数繰り返します
+# order_item にも一緒にデータを保存する必要があるのでここで保存します
+      oder_details = OrderDetail.new
+      oder_details.item_id = cart.item_id
+      oder_details.order_id = @order.id
+      oder_details.order_comfirm= cart.comfirm
+# 購入が完了したらカート情報は削除するのでこちらに保存します
+      order_item.order_price = cart.item.price
+# カート情報を削除するので item との紐付けが切れる前に保存します
+      order_item.save
+    end
+    redirect_to 遷移したいページのパス
+    cart_items.destroy_all
+# ユーザーに関連するカートのデータ(購入したデータ)をすべて削除します(カートを空にする)
+  else
+    @order = Order.new(order_params)
+    render :new
+  end
+end
 
   def comfirm
    @order = Order.new(order_params)
-
   if params[:order][:address_number] == "1"
-    @order.name = current_customer.name
-    @order.address = current_customer.customer_address
+    @order.postal_code = current_customer.postal_code
+    @order.address = current_customer.address
+    @order.name = current_customer.first_name + current_customer.last_name
 
   elsif params[:order][:address_number] == "2"
     address_new = current_customer.addresses.new(address_params)
-   if address_new.save # 確定前(確認画面)で save してしまうことになりますが、私の知識の限界でした
+
+   if address_new.save
+    @order.postal_code = address_new.postal_code
+    @order.address = address_new.address
+    @order.name = address_new.name
+
    else
       render :new
-# ここに渡ってくるデータはユーザーで新規追加してもらうので、入力不足の場合は new に戻します
    end
-  else
-    redirect_to items_path
+   end
+     redirect_to orders_comfirm_path
   end
-
 
   def complete
   end
@@ -37,7 +64,7 @@ class Public::OrdersController < ApplicationController
 
   def show
   end
-  end
+
 
 private
     def order_params

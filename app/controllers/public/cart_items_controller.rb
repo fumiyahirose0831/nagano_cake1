@@ -4,7 +4,6 @@ def create
    @customer = current_customer
    @cart_item = CartItem.new(cart_item_params)
    @items = Item.all
-  # 1. 追加した商品がカート内に存在するかの判別
    @item = current_customer.cart_items.find_by(item_id: @cart_item.item_id)
     if @item
       @item.update(amount: @item.amount + @cart_item.amount)

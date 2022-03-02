@@ -6,13 +6,10 @@
 
  </div>
 
-
-
-
   <h5>支払方法</h5>
   
   
-  <%= form_with model:@order,url: orders_path, local:true do |f| %>
+<%= form_with model: @order, url: orders_comfirm_path, local: true do |f| %>
   <%= f.hidden_field :customer_id, :value => @customer.id %>
 
    <%= f.radio_button :payment_method, "credit_card" %>
@@ -23,8 +20,6 @@
 
    <h5>お届け先</h5>
  
-<%= form_with model: @order, url: orders_comfirm_path, local: true do |f| %>
-
 
   <%= f.radio_button :address_number, 1 %> 
   <%= f.label :address_number_1, "ご自身の住所" %>
