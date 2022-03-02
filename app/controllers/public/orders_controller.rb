@@ -33,25 +33,21 @@ class Public::OrdersController < ApplicationController
 end
 
   def comfirm
-   @order = Order.new(order_params)
+    @order = current_customer.orders.new
   if params[:order][:address_number] == "1"
     @order.postal_code = current_customer.postal_code
     @order.address = current_customer.address
     @order.name = current_customer.first_name + current_customer.last_name
 
   elsif params[:order][:address_number] == "2"
-    address_new = current_customer.addresses.new(address_params)
-
-   if address_new.save
-    @order.postal_code = address_new.postal_code
-    @order.address = address_new.address
-    @order.name = address_new.name
+    @order.postal_code = params[:order][:postal_code] 
+    @order.address = params[:order][:address] 
+    @order.name = params[:order][:name] 
 
    else
       render :new
    end
    end
-     redirect_to orders_comfirm_path
   end
 
   def complete
