@@ -10,7 +10,7 @@
 
 
 <%= form_with model: @order, url: orders_comfirm_path, local: true do |f| %>
-  <%= f.hidden_field :customer_id, :value => @customer.id %>
+ 　 <%= f.hidden_field :customer_id, :value => @customer.id %>
 
    <%= f.radio_button :payment_method, "credit_card" %>
    <%= f.label :payment_method, "クレジットカード" %>

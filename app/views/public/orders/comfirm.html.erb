@@ -3,18 +3,48 @@
  <div class="row">
 
   <h4>注文情報確認</h4>
-
-
+ <table class="table table-hover table-inverse">
+   <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+<tbody>
 <% @cart_items.each do |cart| %>
+<tr>
+  <td>
   <%= cart.item.name %> 
-  <%= (cart.item.price).to_s(:delimited) %>　
-  <%= cart.amount %> 
-  <%= (cart.item.price*cart.amount).to_s(:delimited) %> 
+ </td>
+
+  <td>
+  <%= (cart.item.price).to_s(:delimited) %>　<!-- 金額 -->
+ </td>
+
+  <td>  
+  <%= cart.amount %> <!-- 個数 -->
+ </td>
+
+  <td>  
+  <%= (cart.item.price*cart.amount).to_s(:delimited) %> <!-- 小計 -->
+ </td>
+</tr>　
 <% end %>
-<p>ご請求金額</p>
-<%= @total.to_s(:delimited) %> <!-- お買い物の合計金額 -->
-<p>お届け先</p>
-<%= @order.postal_code %><%= @order.address %><%= @order.name %>
+</tbody>
+ </table>
+
+<h6>送料：800</h6>
+<h6>商品合計：</h6> 
+<h6>請求金額：</h6>
+
+<h6>支払方法:<%= @order.payment_method %></h6>
+
+<p>お届け先:
+<%= @order.postal_code %><%= @order.address %><%= @order.name %></p>
 
 <!-- ユーザーには注文確定ボタンだけ表示します -->
 <%= form_with model: @order, url: orders_path, local: true do |f| %>

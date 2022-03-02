@@ -5,7 +5,7 @@ class Public::OrdersController < ApplicationController
   end
 
  def create
-  cart_items = current_customer.cart_items.all
+  @cart_items = current_customer.cart_items.all
 # ログインユーザーのカートアイテムをすべて取り出して cart_items に入れます
   @order = current_customer.orders.new(order_params)
 # 渡ってきた値を @order に入れます
@@ -30,9 +30,13 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     render :new
   end
-end
+
+ end
+  
+
 
   def comfirm
+    @cart_items = current_customer.cart_items.all
     @order = current_customer.orders.new
   if params[:order][:address_number] == "1"
     @order.postal_code = current_customer.postal_code
@@ -48,7 +52,8 @@ end
       render :new
    end
    end
-  end
+   
+  
 
   def complete
   end
