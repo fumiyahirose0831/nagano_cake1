@@ -1,8 +1,9 @@
 <div class = "container">
-
+   <h4>注文情報確認</h4>
  <div class="row">
 
-  <h4>注文情報確認</h4>
+<div class ="col-6">
+
  <table class="table table-hover table-inverse">
    <thead>
     <tr>
@@ -10,41 +11,64 @@
       <th>単価(税込)</th>
       <th>数量</th>
       <th>小計</th>
-      <th></th>
-      <th colspan="3"></th>
     </tr>
-  </thead>
-<tbody>
-<% @cart_items.each do |cart| %>
-<tr>
-  <td>
-  <%= cart.item.name %> 
- </td>
+   </thead>
+ <tbody>
+   <% @totle =0 %>
+   <% @cart_items.each do |cart_item| %>
+    <tr>
+     <td>
+       <%= cart_item.item.name %>
+     </td>
 
-  <td>
-  <%= (cart.item.price).to_s(:delimited) %>　<!-- 金額 -->
- </td>
-
-  <td>  
-  <%= cart.amount %> <!-- 個数 -->
- </td>
-
-  <td>  
-  <%= (cart.item.price*cart.amount).to_s(:delimited) %> <!-- 小計 -->
- </td>
-</tr>　
-<% end %>
-</tbody>
+     <td>
+       <%= cart_item.item.with_tax_price.to_s(:delimited) %>
+     </td>
+     <td>
+       <%= cart_item.amount %>
+     </td>
+     <td>
+       <%= cart_item.subtotal.to_s(:delimited)%>
+       <% @totle += cart_item.subtotal %>
+     </td>
+    </tr>
+   <% end %>
  </table>
+</div>
 
-<h6>送料：800</h6>
-<h6>商品合計：</h6> 
-<h6>請求金額：</h6>
+<div class ="col-6">
+  <% @postage =800 %>
+    <table class="table table-hover table-inverse">
+   <thead>
+    <tr>
+    </tr>
+   </thead>
+  
+   <tbody>
+      <tr>
+        <td>送料</td><td><%= @postage%></td>
+      </tr>
+      <tr>
+        <td>商品合計</td><td><%= @totle .to_s(:delimited)%></td>
+      </tr>
+      <tr>
+        <td>請求金額</td><td><%= (@totle + @postage).to_s(:delimited)%> </td>
+      </tr>
+   </tbody>
+  </div>
 
-<h6>支払方法:<%= @order.payment_method %></h6>
 
-<p>お届け先:
-<%= @order.postal_code %><%= @order.address %><%= @order.name %></p>
+   <tbody>
+      <tr>
+        <td>支払方法</td><td><%= @order.payment_method %></td>
+      </tr>
+      <tr>
+        <td>お届け先</td><td><%= @order.postal_code %>　<%= @order.address %>　<%= @order.name %></td>
+      </tr>
+   </tbody>
+  </table>
+
+
 
 <!-- ユーザーには注文確定ボタンだけ表示します -->
 <%= form_with model: @order, url: orders_path, local: true do |f| %>
