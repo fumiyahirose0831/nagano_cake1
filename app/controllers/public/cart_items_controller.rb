@@ -8,9 +8,9 @@ def create
     if @item
       @item.update(amount: @item.amount + @cart_item.amount)
 
-　  else
+  else
     @cart_item.save
-　  end
+  end
     redirect_to cart_items_path
 end
 

@@ -37,7 +37,7 @@
 </div>
 
 <div class ="col-6">
-  <% @postage =800 %>
+  <% @shipping_cost =800 %>
     <table class="table table-hover table-inverse">
    <thead>
     <tr>
@@ -46,13 +46,13 @@
 
    <tbody>
       <tr>
-        <td>送料</td><td><%= @postage%></td>
+        <td>送料</td><td><%= @shipping_cost%></td>
       </tr>
       <tr>
         <td>商品合計</td><td><%= @totle .to_s(:delimited)%></td>
       </tr>
       <tr>
-        <td>請求金額</td><td><%= (@totle + @postage).to_s(:delimited)%> </td>
+        <td>請求金額</td><td><%= (@totle + @shipping_cost).to_s(:delimited)%> </td>
       </tr>
    </tbody>
   </div>
@@ -68,12 +68,14 @@
    </tbody>
   </table>
 
-<% @totalprice = (@totle + @postage) %>
+<% @totalprice = (@totle + @shipping_cost) %>
 
 <!-- ユーザーには注文確定ボタンだけ表示します -->
 <%= form_with model: @order, url: orders_path, local: true do |f| %>
+  <%= f.hidden_field :postal_code %>
   <%= f.hidden_field :name %>
   <%= f.hidden_field :address %>
-  <%= f.hidden_field :total_payment, value: @totalprice %>
+  <%= f.hidden_field :shipping_cost, value:@shipping_cost  %>
+  <%= f.hidden_field :total_payment, value:  (@totle + @shipping_cost) %>
   <%= f.submit "注文を確定する" %>
 <% end %>
