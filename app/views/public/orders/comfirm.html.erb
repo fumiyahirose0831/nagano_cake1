@@ -68,12 +68,12 @@
    </tbody>
   </table>
 
-
+<% @totalprice = (@totle + @postage) %>
 
 <!-- ユーザーには注文確定ボタンだけ表示します -->
 <%= form_with model: @order, url: orders_path, local: true do |f| %>
   <%= f.hidden_field :name %>
   <%= f.hidden_field :address %>
-  <%= f.hidden_field :total_price, value: @total %>
+  <%= f.hidden_field :total_payment, value: @totalprice %>
   <%= f.submit "注文を確定する" %>
 <% end %>

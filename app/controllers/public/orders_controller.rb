@@ -13,10 +13,10 @@ class Public::OrdersController < ApplicationController
 # 渡ってきた値を @order に入れます
   if @order.save
 # ここに至るまでの間にチェックは済ませていますが、念の為IF文で分岐させています
-    cart_items.each do |cart|
+    @cart_items.each do |cart_item|
 # 取り出したカートアイテムの数繰り返します
 # order_item にも一緒にデータを保存する必要があるのでここで保存します
-      oder_details = OrderDetail.new
+      oder_details = OderDetail.new
       oder_details.item_id = cart.item_id
       oder_details.order_id = @order.id
       oder_details.order_comfirm= cart.comfirm
@@ -25,8 +25,9 @@ class Public::OrdersController < ApplicationController
 # カート情報を削除するので item との紐付けが切れる前に保存します
       order_item.save
     end
-    redirect_to 遷移したいページのパス
-    cart_items.destroy_all
+    redirect_to orders_complete_path
+    current_user.cart_items.destroy_all
+
 # ユーザーに関連するカートのデータ(購入したデータ)をすべて削除します(カートを空にする)
   else
     @order = Order.new(order_params)
@@ -55,10 +56,9 @@ class Public::OrdersController < ApplicationController
   else
       render :new
   end
-       
-  end
+
    
-   end
+  end
    
   
 
