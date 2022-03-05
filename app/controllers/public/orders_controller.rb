@@ -6,7 +6,7 @@ class Public::OrdersController < ApplicationController
 
  def create
 
-  
+
   @cart_items = current_customer.cart_items.all
 # ログインユーザーのカートアイテムをすべて取り出して cart_items に入れます
   @order = current_customer.orders.new(order_params)
@@ -16,17 +16,17 @@ class Public::OrdersController < ApplicationController
     @cart_items.each do |cart_item|
 # 取り出したカートアイテムの数繰り返します
 # order_item にも一緒にデータを保存する必要があるのでここで保存します
-      oder_details = OderDetail.new
-      oder_details.item_id = cart.item_id
-      oder_details.order_id = @order.id
-      oder_details.order_comfirm= cart.comfirm
+      order_detail = OrderDetail.new
+      order_detail.item_id = cart_item.item_id
+      order_detail.order_id = @order.id
+      order_detail.amount = cart_item.amount
 # 購入が完了したらカート情報は削除するのでこちらに保存します
-      order_item.order_price = cart.item.price
+      order_detail.price = cart_item.item.price
 # カート情報を削除するので item との紐付けが切れる前に保存します
-      order_item.save
+      order_detail.save
     end
     redirect_to orders_complete_path
-    current_user.cart_items.destroy_all
+    current_customer.cart_items.destroy_all
 
 # ユーザーに関連するカートのデータ(購入したデータ)をすべて削除します(カートを空にする)
   else
@@ -35,12 +35,12 @@ class Public::OrdersController < ApplicationController
   end
 
  end
-  
+
 
 
   def comfirm
 
-  
+
     @cart_items = current_customer.cart_items.all
     @order = current_customer.orders.new
   if params[:order][:address_number] == "1"
@@ -49,18 +49,18 @@ class Public::OrdersController < ApplicationController
     @order.name = current_customer.first_name + current_customer.last_name
 
   elsif params[:order][:address_number] == "2"
-    @order.postal_code = params[:order][:postal_code] 
-    @order.address = params[:order][:address] 
-    @order.name = params[:order][:name] 
+    @order.postal_code = params[:order][:postal_code]
+    @order.address = params[:order][:address]
+    @order.name = params[:order][:name]
 
   else
       render :new
   end
 
-   
+
   end
-   
-  
+
+
 
   def complete
   end
