@@ -24,7 +24,7 @@ class Public::OrdersController < ApplicationController
       order_detail.save
     end
     redirect_to orders_complete_path
-    current_customer.cart_items.destroy_all 
+    current_customer.cart_items.destroy_all
     # ユーザーに関連するカートのデータ(購入したデータ)をすべて削除します(カートを空にする)
   else
     @order = Order.new(order_params)
@@ -60,6 +60,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+   @order =  Order.find(params[:id])
   end
 
 
