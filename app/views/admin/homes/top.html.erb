@@ -14,14 +14,23 @@
 <% @orders.each do |order| %>
 <tr>
   <td>
-   <%= link_to order.creatrd_at, "/admin/orders/#{order.id}" %>
-  </td>
-  <td>
-   <%= order.customer_id %><%#=cousyomerのnameを追加%>
+   <%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S')  , order_path(order.id)  %>
 
   </td>
   <td>
-   <%= order.id %><%#=order_deatilsのamountを追加%>
+
+ 　<%= order.customer.first_name %> <%= order.customer.last_name %>
+
+
+  </td>
+  <td>
+   <% @totle_amount =0 %>
+   <% order.order_details.each do |order_detail| %>
+   <% order_detail.amount %> <% @totle_amount += order_detail.amount %>
+   <% end %>
+ 
+ 　 <%= @totle_amount %>
+ 　
   </td>
  </div>
  <% end %>
