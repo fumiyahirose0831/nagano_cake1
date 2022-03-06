@@ -10,23 +10,27 @@
      </thead>
     <tbody>
       <p>注文情報</p>
+     
      <tr>
        <td>
          <td>注文日</td><td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
       </td>
      </tr>
+
      <tr>
       <td>
          <td>配送先</td><td>〒<%= @order.postal_code %> <%= @order.address %> <%= @order.name %></td>
       </td>
      </tr>
+     
      <tr>
       <td>
-          <td>支払方法</td><td> </td>
+          <td>支払方法</td><td><%= @order.payment_method_i18n %></td>
       </td>
      </tr>
+     
   </div>
- 
+
   </tbody>
 </table>
 
