@@ -1,46 +1,38 @@
 <div class="mt-5">
-
-<div class = "container">
-
-<div class="row">
-　<div class ="col-1">
+ <div class = "container">
+  <div class="row">
+　 <div class ="col-1">
+   </div>
+     <div class ="col-3">
+      <%= attachment_image_tag @item, :image, :fill, 300, 300 %>
+     </div>
+    　<div class ="col-1">
+     </div>
+      <div class ="col-6">
+       <table class="table table-hover table-inverse">
+          <tbody>
+             <tr>
+               <h5> <%= @item.name %></h5>
+             </tr>
+             <tr>
+               <td> <%= @item.introduction %></td>
+             </tr>
+             <tr>
+               <td> ￥<%= (@item.price * 1.1).floor. to_s(:delimited)  %> (税込)</td>
+             </tr>
+          </tbody>
+      </table>
+     
+      <%= form_with model:@cart_item,url: cart_items_path, local:true do |f| %>
+     　　<%= f.hidden_field :customer_id, :value => @customer.id %>
+     　　<%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.select :amount, *[1..10] %>
+        <%= f.submit 'カートに追加' ,class: 'btn btn-success'  %>
+      <% end %>
+      
+      
+      
+    </div>
+   </div>
   </div>
- <div class ="col-3">
-  <%= attachment_image_tag @item, :image, :fill, 300, 300 %>
-  </div>
-  　<div class ="col-1">
-  </div>
-  
-  <div class ="col-6">
-
-  <table class="table table-hover table-inverse">
-
-    <tbody>
-
-     <tr>
-      <h5> <%= @item.name %></h5>
-     </tr>
-
-     <tr>
-      <td> <%= @item.introduction %></td>
-     </tr>
-
-     <tr>
-      <td> ￥<%= (@item.price * 1.1).floor. to_s(:delimited)  %> (税込)</td>
-     </tr>
-    </tbody>
-
-
- </table>
-<%= form_with model:@cart_item,url: cart_items_path, local:true do |f| %>
-　　<%= f.hidden_field :customer_id, :value => @customer.id %>
-　　<%= f.hidden_field :item_id, :value => @item.id %>
-   <%= f.select :amount, *[1..10] %>
-   <%= f.submit 'カートに追加' ,class: 'btn btn-success'  %>
-
- <% end %>
- </div>
-
-</div>
-</div>
 </div>
