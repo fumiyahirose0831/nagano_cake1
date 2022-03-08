@@ -4,11 +4,14 @@ class Admin::ItemsController < ApplicationController
   @item = Item.new
   end
 
-  def create
+def create
    @item = Item.new(item_params)
-   @item.save
-    redirect_to new_admin_item_path
+  if @item.save
+    redirect_to admin_item_path(@item.id)
+  else
+    render :new
   end
+end
 
   def index
    @items = Item.all
@@ -17,7 +20,7 @@ class Admin::ItemsController < ApplicationController
 
   def show
    @item = Item.find(params[:id])
-   @cart_item = Cart_item.new
+
   end
 
   def update
