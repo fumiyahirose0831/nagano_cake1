@@ -24,7 +24,7 @@
    <%= link_to item.name, "/admin/items/#{item.id}" %>
   </td>
   <td>
-   <%= item.price%>
+   <%= item.price. to_s(:delimited)%>
   </td>
  </div>
  <% end %>
