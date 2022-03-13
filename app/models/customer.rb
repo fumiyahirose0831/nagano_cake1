@@ -9,7 +9,7 @@ class Customer < ApplicationRecord
 
     has_many :cart_items, dependent: :destroy
     has_many :orders, dependent: :destroy
-
+    has_many :address, dependent: :destroy
 
   def full_name
     self.last_name.to_s + " " + self.first_name.to_s
