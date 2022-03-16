@@ -1,7 +1,16 @@
 <div class="col-md-8 offset-md-1">
 <h3>配送先登録/一覧</h3>
+<% if @address.errors.any? %>
+  <%= @address.errors.count %>件のエラーが発生しました
+  <ul>
+  <% @address.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>
 
-<%= form_with model:@address,url: addresses_path, local:true do |f| %>
+
+<%= form_with model:@address,url:addresses_path, local:true do |f| %>
 <div class="row">
  <table class="table table-hover table-borderless">
   <tr>
@@ -32,29 +41,32 @@
  </tr>
  <% end %>
 
-
-
-
 <table class="table table-bordered">
- <thead>
-   <tr>
-     <td>郵便番号</td>
-     <td>住所</td>
-     <td>宛名</td>
-     <td></td>
-   </tr>
- </thead>
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">郵便番号</th>
+      <th scope="col">住所</th>
+      <th scope="col">宛名</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
   <tbody>
    <% @addresses.each do |address| %>
+    <tr>
+      <th scope="row"><%= address.postal_code %></th>
+      <th scope="row"><%= address.address %></th>
+      <th scope="row"><%= address.name %></th>
+      <th scope="row">
+       <div class="mx-auto" style="width: 200px;">
+        <%= link_to "編集する",edit_address_path(address), class: 'btn btn-success'%> <%= link_to "削除",address_path(address),method: :delete , "data-confirm" => "本当に削除しますか？" , class: 'btn btn-outline-danger'%> </td>
+       </div>
 
-      <tr>
-        <td><%= address.postal_code %></td>
-        <td><%= address.address %></td>
-        <td><%= address.name %></td>
-        <td>f</td>
-      </tr>
-      <% end %>
+
+       </th>
+    </tr>
+    <% end %>
   </tbody>
- </table>
+</table>
+
 
 </div>
